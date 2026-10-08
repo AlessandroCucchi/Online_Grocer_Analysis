@@ -6,3 +6,4 @@ data/*.duckdb.wal
 __pycache__/
 .venv/
 anaconda_projects/
+
