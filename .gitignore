@@ -1,0 +1,7 @@
+# Raw data is too large for GitHub (~700 MB) - download it from Kaggle
+data/raw/*.csv
+data/*.duckdb
+data/*.duckdb.wal
+.ipynb_checkpoints/
+__pycache__/
+.venv/
