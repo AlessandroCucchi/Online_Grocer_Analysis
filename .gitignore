@@ -1,9 +1,8 @@
-# Raw data is too large for GitHub (~700 MB) - download it from Kaggle
+# Raw data is too large for GitHub (~700 MB): download it from Kaggle
 data/raw/*.csv
 data/*.duckdb
 data/*.duckdb.wal
+anaconda_projects/
 .ipynb_checkpoints/
 __pycache__/
 .venv/
-anaconda_projects/
-

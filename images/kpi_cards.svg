@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="190" viewBox="0 0 1200 190">
+  <g transform="translate(0,10)">
+    <rect width="276" height="170" rx="14" fill="#0f2744"/>
+    <rect x="24" y="24" width="40" height="4" rx="2" fill="#7fe3d6"/>
+    <text x="24" y="92" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="54" font-weight="700" fill="#7fe3d6">57%</text>
+    <text x="24" y="126" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="17" fill="#ffffff">of orders placed by</text>
+    <text x="24" y="150" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="17" fill="#9fb3c8">weekly shoppers</text>
+  </g>
+  <g transform="translate(308,10)">
+    <rect width="276" height="170" rx="14" fill="#0f2744"/>
+    <rect x="24" y="24" width="40" height="4" rx="2" fill="#7fe3d6"/>
+    <text x="24" y="92" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="54" font-weight="700" fill="#7fe3d6">30k</text>
+    <text x="24" y="126" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="17" fill="#ffffff">regular customers</text>
+    <text x="24" y="150" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="17" fill="#9fb3c8">slipping away (14.8%)</text>
+  </g>
+  <g transform="translate(616,10)">
+    <rect width="276" height="170" rx="14" fill="#0f2744"/>
+    <rect x="24" y="24" width="40" height="4" rx="2" fill="#7fe3d6"/>
+    <text x="24" y="92" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="54" font-weight="700" fill="#7fe3d6">69%</text>
+    <text x="24" y="126" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="17" fill="#ffffff">reorder rate of fresh food</text>
+    <text x="24" y="150" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="17" fill="#9fb3c8">vs 55% for other products</text>
+  </g>
+  <g transform="translate(924,10)">
+    <rect width="276" height="170" rx="14" fill="#0f2744"/>
+    <rect x="24" y="24" width="40" height="4" rx="2" fill="#7fe3d6"/>
+    <text x="24" y="92" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="54" font-weight="700" fill="#7fe3d6">3x</text>
+    <text x="24" y="126" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="17" fill="#ffffff">orders in the peak hour</text>
+    <text x="24" y="150" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="17" fill="#9fb3c8">vs a normal hour</text>
+  </g>
+</svg>
