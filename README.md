@@ -7,7 +7,7 @@
 
 [Background](#project-background) · [Key Metrics](#key-metrics) · [Summary](#executive-summary) · [Insights](#insights-deep-dive) · [Recommendations](#recommendations) · [Repository](#repository-and-how-to-run)
 
-> SQL analysis of **3.4M orders** from **206k customers** of an online grocer. Weekly shoppers are **32% of customers but place 57% of orders**, **30k regular customers** show signs of slipping away, and fresh food is both the largest share of the basket (**55%**) and the most predictable demand (**69% reorder rate**).
+> SQL analysis of **3.4M orders** from **206k customers** of an online grocer. Weekly shoppers are **32% of customers but place 57% of orders**, **1 regular customer in 7** pauses for twice their usual gap, and fresh food is both the largest share of the basket (**55%**) and the most predictable demand (**69% reorder rate**).
 
 <a id="project-background"></a>
 [![Project Background](images/h_background.svg)](images/h_background.svg)
@@ -17,7 +17,7 @@ An online grocer that delivers in fixed time slots lives on **repeat business**:
 This project answers five business questions with SQL on a public dataset of 3.4M anonymised grocery orders:
 
 1. When do customers place orders, and how concentrated is demand?
-2. How often do customers come back, and who is slipping away?
+2. How often do customers come back, how often do they break their rhythm?
 3. Which products and departments are bought again and again?
 4. What is in the first basket of customers who become loyal?
 5. Which data traps would bias these answers if ignored?
@@ -25,7 +25,7 @@ This project answers five business questions with SQL on a public dataset of 3.4
 <a id="key-metrics"></a>
 [![Key Metrics](images/h_metrics.svg)](images/h_metrics.svg)
 
-[![Key metrics: 57% of orders placed by weekly shoppers, 30k regular customers slipping away, 69% reorder rate of fresh food, 3x orders in the peak hour](images/kpi_cards.svg)](images/kpi_cards.svg)
+[![Key metrics: 57% of orders placed by weekly shoppers, 1 in 7 regular customers breaks their rhythm, 69% reorder rate of fresh food, 3x orders in the peak hour](images/kpi_cards.svg)](images/kpi_cards.svg)
 
 <a id="executive-summary"></a>
 [![Executive Summary](images/h_summary.svg)](images/h_summary.svg)
@@ -63,16 +63,16 @@ Two days (assumed Sunday and Monday) account for **~35%** of weekly orders, and 
 
 Weekly customers place **1.8x** their share of orders (57% of orders from 32% of customers). Infrequent customers (14%) place only 5% of orders.
 
-### 3. One regular customer in seven is slipping away
+### 3. One regular customer in seven breaks their rhythm
 [Notebook 03](notebooks/03_shopping_rhythm.ipynb)
 
-| Segment | Customers | At risk | % at risk |
+| Segment | Customers | Rhythm break | % with a break |
 |---|---|---|---|
 | Weekly | 65,819 | 14,340 | 21.8% |
 | **Bi-weekly** | **56,756** | **16,149** | **28.5%** |
 | **Total** | **206,209** | **30,489** | **14.8%** |
 
-A customer is *at risk* when the gap before their last order is at least 2x their usual median gap and at least 14 days. Because gaps are capped at 30 days, this rule can only flag weekly and bi-weekly customers, who place 81% of orders.
+A *rhythm break* is when the gap before their last order is at least 2x their usual median gap and at least 14 days. Because gaps are capped at 30 days, this rule can only flag weekly and bi-weekly customers, who place 81% of orders. These customers did come back: the data cannot show who leaves for good.
 
 ### 4. Fresh food is the biggest and most predictable part of the basket
 [Notebook 04](notebooks/04_reorder_behaviour.ipynb)
@@ -102,7 +102,7 @@ The organic version of a product tends to rank high and the conventional version
 
 - **Data quality first:** every rule below comes from a check in notebook 01 and is applied in all later notebooks.
 - **Structural NULLs:** `days_since_prior_order` is NULL only on each customer's first order; these rows are excluded from interval analysis, never filled with 0.
-- **Capped values:** gaps are capped at 30 days, so 30 is read as "30 or more" and limits what the at-risk rule can detect.
+- **Capped values:** gaps are capped at 30 days, so 30 is read as "30 or more" and limits what the rhythm-break rule can detect.
 - **Reorder rates:** first orders are excluded, since every product is new by definition (59% → 63%).
 - **Normalisation:** time slots of different length are compared per hour, not by total orders.
 - **Consistency checks:** each result is checked against a known total (e.g. segment counts = 206,209 customers; reordered items / all items = the overall reorder rate).
@@ -112,7 +112,7 @@ The organic version of a product tends to rank high and the conventional version
 [![Recommendations](images/h_reco.svg)](images/h_reco.svg)
 
 1. **Grow frequency, not only acquisition.** Moving bi-weekly customers to a weekly habit (recurring "basics" lists, a reminder on their usual delivery day) adds orders on routes that already exist.
-2. **Act on at-risk customers early.** Trigger a win-back action as soon as a regular customer's gap breaks their usual rhythm, before they reach 30+ days.
+2. **Test a reminder when the rhythm breaks.** A pause of twice the usual gap is common (1 regular customer in 7): a natural trigger for a reminder, to be validated with an A/B test.
 3. **Buy fresh stock from known repeat demand.** The most perishable products are also the most predictable, so this is where order data can cut waste the most. A "Buy again" section at the top of the app would also match how customers already shop.
 4. **Use the first basket as an early signal and smooth the weekly peak.** Give extra onboarding attention to new customers whose first basket suggests a lower chance of becoming regular, and test small incentives on quieter days to spread demand across the week.
 
@@ -127,7 +127,7 @@ Online_Grocer_Analysis/
 ├── notebooks/
 │   ├── 01_data_overview.ipynb       # table sizes and data quality rules
 │   ├── 02_delivery_slots.ipynb      # when customers order
-│   ├── 03_shopping_rhythm.ipynb     # segments and at-risk customers
+│   ├── 03_shopping_rhythm.ipynb     # rhythm breaks
 │   ├── 04_reorder_behaviour.ipynb   # reorder rates by department and product
 │   └── 05_anchor_products.ipynb     # first-basket signals of loyalty
 ├── figures/                         # charts exported by the notebooks
